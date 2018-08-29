@@ -1,4 +1,41 @@
-.menu {
-  padding: 0 10%;
+.container {
+  display: flex;
+  padding: 16px 5%;
   border: 1px solid red;
+}
+
+.menu {
+  display: flex;
+  margin: 0 5% 0 auto;
+
+  > input {
+    display: none;
+  }
+
+  > label {
+    font-family: OpenSans-Semibold;
+    font-size: 16px;
+    color: rgba(74,74,74,0.25);
+    letter-spacing: 0;
+    text-align: center;
+
+    margin-left: 40px;
+    border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.price-checkbox-style:checked ~ .price-label {
+  color: red;
+}
+
+.wallet-checkbox-style:checked ~ .wallet-label {
+  color: red;
+}
+
+.account-checkbox-style:checked ~ .account-label {
+  color: red;
 }

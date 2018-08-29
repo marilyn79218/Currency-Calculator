@@ -1,6 +1,5 @@
 {
-  "image_per_page": "Image per page:",
-  "select_all": "Select all",
-  "woooo_ha": "中文_WooooHa",
-  "price": "中文_price"
+  "prices": "匯率",
+  "wallet": "錢包",
+  "account": "帳戶"
 }

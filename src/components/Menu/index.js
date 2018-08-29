@@ -7,9 +7,9 @@ import {
 
 import {
   compose,
-  // withState,
+  withState,
   // withProps,
-  // withHandlers,
+  withHandlers,
   lifecycle,
 } from 'recompose';
 
@@ -26,6 +26,12 @@ type PropsFromHOC = {
   t: TFunction,
 };
 
+const CHECKED_VALUES = {
+  pricesValue: true,
+  walletValue: false,
+  accountValue: false,
+};
+
 const Menu = ({
   t,
   history: {
@@ -34,44 +40,126 @@ const Menu = ({
   // location: {
   //   pathname,
   // },
+  checkedValues: {
+    pricesValue,
+    walletValue,
+    accountValue,
+  },
+  clickTabHandler,
 }: Props | PropsFromHOC) => {
-  console.log('render');
+  console.log('render pricesValue', pricesValue);
+  // console.log('render walletValue', walletValue);
+  // console.log('render accountValue', accountValue);
 
   return (
     <div
-      className={styles.menu}
+      className={styles.container}
     >
-      Menu here
-      {t('woooo_ha')}
-
-      <button
-        onClick={() => {
-          push('/en-US/prices');
-          i18n.changeLanguage('en-US');
-        }}
+      <div
+        className={styles.menu}
       >
-        En price
-      </button>
-      <button
-        onClick={() => {
-          push('/zh-TW/prices');
-          i18n.changeLanguage('zh-TW');
-        }}
-      >
-        Tw price
-      </button>
+        <input
+          id="price-checkbox"
+          className={styles['price-checkbox-style']}
+          type="checkbox"
+          role="button"
+          checked={pricesValue}
+          onChange={clickTabHandler('pricesValue')}
+        />
+        <label
+          className={styles['price-label']}
+          htmlFor="price-checkbox"
+        >
+          <span>
+            {t('prices')}
+          </span>
+        </label>
+        <input
+          id="wallet-checkbox"
+          className={styles['wallet-checkbox-style']}
+          type="checkbox"
+          role="button"
+          checked={walletValue}
+          onChange={clickTabHandler('walletValue')}
+        />
+        <label
+          className={styles['wallet-label']}
+          htmlFor="wallet-checkbox"
+        >
+          <span>
+            {t('wallet')}
+          </span>
+        </label>
+        <input
+          id="account-checkbox"
+          className={styles['account-checkbox-style']}
+          type="checkbox"
+          role="button"
+          checked={accountValue}
+          onChange={clickTabHandler('accountValue')}
+        />
+        <label
+          className={styles['account-label']}
+          htmlFor="account-checkbox"
+        >
+          <span>
+            {t('account')}
+          </span>
+        </label>
+        <div>
+          Lang Switch
+          <button
+            onClick={() => {
+              push('/en-US/prices');
+              i18n.changeLanguage('en-US');
+            }}
+          >
+            En price
+          </button>
+          <button
+            onClick={() => {
+              push('/zh-TW/prices');
+              i18n.changeLanguage('zh-TW');
+            }}
+          >
+            Tw price
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
 
 const hoc = compose(
-  withRouter,
-  translate('default'),
+  withState('checkedValues', 'setCheckedValues', CHECKED_VALUES),
+  withHandlers({
+    clickTabHandler: props => (tabName = 'pricesValue') => () => {
+      const {
+        checkedValues: legacyValues,
+      } = props;
+
+      /* eslint-disable */
+      const updatedValues = {};
+      Object.keys(legacyValues).reduce((pV, cV) => {
+        if (cV !== tabName) {
+          pV[cV] = false;
+        } else {
+          pV[cV] = true;
+        }
+
+        return pV;
+      }, updatedValues);
+
+      props.setCheckedValues(updatedValues);
+    },
+  }),
   lifecycle({
     componentDidMount() {
       console.log('componentDidMount', this.props);
     },
   }),
+  withRouter,
+  translate('default'),
 );
 
 export default hoc(Menu);

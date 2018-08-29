@@ -7,7 +7,7 @@ i18next
   .use(LanguageDetector)
   .init({
     resources: combinedResources,
-    fallbackLng: 'en-US',
+    fallbackLng: 'zh-TW',
   });
 
 export default i18next;

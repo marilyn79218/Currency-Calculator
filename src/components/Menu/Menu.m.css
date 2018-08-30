@@ -1,7 +1,7 @@
 .container {
   display: flex;
   padding: 16px 5%;
-  border: 1px solid red;
+  box-shadow: 0 -4px 16px 0;
 }
 
 .menu {
@@ -30,13 +30,21 @@
 }
 
 .price-checkbox-style:checked ~ .price-label {
-  color: red;
+  color: #3F5498;
 }
 
 .wallet-checkbox-style:checked ~ .wallet-label {
-  color: red;
+  color: #3F5498;
 }
 
 .account-checkbox-style:checked ~ .account-label {
-  color: red;
+  color: #3F5498;
 }
+
+.price-label {
+  font-family: OpenSans-Semibold;
+  font-size: 16px;
+  color: rgba(74,74,74,0.25);
+  letter-spacing: 0;
+}
+

@@ -7,12 +7,14 @@ import {
 
 import App from '../components/app';
 import Prices from '../components/Prices';
+import Wallet from '../components/Wallet';
+import Account from '../components/Account';
 
 const AppRoute: () => React.Node = () => (
   <App>
     <Switch>
-      <Route exact path="/:lng/wallet" component={() => <div>Wallet</div>} />
-      <Route exact path="/:lng/account" component={() => <div>Account</div>} />
+      <Route exact path="/:lng/wallet" component={Wallet} />
+      <Route exact path="/:lng/account" component={Account} />
       <Route path="/:lng/prices" component={Prices} />
     </Switch>
   </App>

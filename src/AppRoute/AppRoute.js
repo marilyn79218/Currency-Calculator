@@ -11,9 +11,9 @@ import Prices from '../components/Prices';
 const AppRoute: () => React.Node = () => (
   <App>
     <Switch>
-      <Route exact path="/:ling/wallet" component={() => <div>Wallet</div>} />
-      <Route exact path="/:ling/account" component={() => <div>Account</div>} />
-      <Route path="/:ling/prices" component={Prices} />
+      <Route exact path="/:lng/wallet" component={() => <div>Wallet</div>} />
+      <Route exact path="/:lng/account" component={() => <div>Account</div>} />
+      <Route path="/:lng/prices" component={Prices} />
     </Switch>
   </App>
 );

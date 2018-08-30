@@ -30,7 +30,7 @@ const Prices = ({
   return (
     <div>
       Prices here
-      {t('price')}
+      {t('prices')}
     </div>
   );
 };

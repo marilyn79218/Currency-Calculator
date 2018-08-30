@@ -29,9 +29,9 @@ type PropsFromHOC = {
 };
 
 const CHECKED_VALUES = {
-  pricesValue: true,
-  walletValue: false,
-  accountValue: false,
+  prices: true,
+  wallet: false,
+  account: false,
 };
 const LANGS = [
   {
@@ -46,22 +46,19 @@ const LANGS = [
 
 const Menu = ({
   t,
-  history: {
-    push,
-  },
   // location: {
   //   pathname,
   // },
   checkedValues: {
-    pricesValue,
-    walletValue,
-    accountValue,
+    prices: pricesChecked,
+    wallet: walletChecked,
+    account: accountChecked,
   },
   clickTabHandler,
   langValue,
   clickLangHandler,
 }: Props | PropsFromHOC) => {
-  console.log('render pricesValue', pricesValue);
+  console.log('Menu render');
   // console.log('render walletValue', walletValue);
   // console.log('render accountValue', accountValue);
 
@@ -77,8 +74,8 @@ const Menu = ({
           className={styles['price-checkbox-style']}
           type="checkbox"
           role="button"
-          checked={pricesValue}
-          onChange={clickTabHandler('pricesValue')}
+          checked={pricesChecked}
+          onChange={clickTabHandler('prices')}
         />
         <label
           className={styles['price-label']}
@@ -93,8 +90,8 @@ const Menu = ({
           className={styles['wallet-checkbox-style']}
           type="checkbox"
           role="button"
-          checked={walletValue}
-          onChange={clickTabHandler('walletValue')}
+          checked={walletChecked}
+          onChange={clickTabHandler('wallet')}
         />
         <label
           className={styles['wallet-label']}
@@ -109,8 +106,8 @@ const Menu = ({
           className={styles['account-checkbox-style']}
           type="checkbox"
           role="button"
-          checked={accountValue}
-          onChange={clickTabHandler('accountValue')}
+          checked={accountChecked}
+          onChange={clickTabHandler('account')}
         />
         <label
           className={styles['account-label']}
@@ -125,25 +122,6 @@ const Menu = ({
           options={LANGS}
           onChange={clickLangHandler}
         />
-        <div>
-          Lang Switch
-          <button
-            onClick={() => {
-              push('/en-US/prices');
-              i18n.changeLanguage('en-US');
-            }}
-          >
-            En price
-          </button>
-          <button
-            onClick={() => {
-              push('/zh-TW/prices');
-              i18n.changeLanguage('zh-TW');
-            }}
-          >
-            Tw price
-          </button>
-        </div>
       </div>
     </div>
   );
@@ -155,15 +133,20 @@ const hoc = compose(
   withState('checkedValues', 'setCheckedValues', CHECKED_VALUES),
   withState('langValue', 'setLangValue', 'zh-TW'),
   withHandlers({
-    clickTabHandler: props => (tabName = 'pricesValue') => () => {
+    clickTabHandler: props => (nextTabName = 'prices') => () => {
       const {
+        history: {
+          push,
+        },
         checkedValues: legacyValues,
+        setCheckedValues,
+        langValue: curLangValue,
       } = props;
 
       /* eslint-disable */
       const updatedValues = {};
       Object.keys(legacyValues).reduce((pV, cV) => {
-        if (cV !== tabName) {
+        if (cV !== nextTabName) {
           pV[cV] = false;
         } else {
           pV[cV] = true;
@@ -172,25 +155,31 @@ const hoc = compose(
         return pV;
       }, updatedValues);
 
-      props.setCheckedValues(updatedValues);
+      setCheckedValues(updatedValues);
+      push(`/${curLangValue}/${nextTabName}`);
     },
     clickLangHandler: props => langObj => {
       const {
         history: {
           push,
         },
+        location: {
+          pathname,
+        },
         setLangValue,
       } = props;
-      const { value: langValue } = langObj;
+      const { value: nextLangValue } = langObj;
+      const curTab = pathname.split('/')[2];
+      // console.log('clickLangHandler', props);
 
-      setLangValue(langValue);
-      push(`/${langValue}/prices`);
-      i18n.changeLanguage(langValue);
+      setLangValue(nextLangValue);
+      push(`/${nextLangValue}/${curTab}`);
+      i18n.changeLanguage(nextLangValue);
     },
   }),
   lifecycle({
     componentDidMount() {
-      console.log('componentDidMount', i18n.language);
+      // console.log('Menu componentDidMount', i18n.language);
       const {
         history: {
           push,

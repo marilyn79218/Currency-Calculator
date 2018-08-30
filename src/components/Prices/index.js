@@ -46,6 +46,30 @@ const Prices = ({
           onChange={amountChange}
         />
       </div>
+      <div
+        className={styles['currency-container']}
+      >
+        <div
+          className={styles['bitcoin-block']}
+        >
+          bitcoin
+        </div>
+        <div
+          className={styles['ethereum-block']}
+        >
+          ethereum
+        </div>
+        <div
+          className={styles['litecoin-block']}
+        >
+          litecoin
+        </div>
+        <div
+          className={styles['ethereum-classic-block']}
+        >
+          ethereum-classic
+        </div>
+      </div>
     </div>
   );
 };

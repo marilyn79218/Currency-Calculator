@@ -15,6 +15,8 @@ import {
 
 import i18n from '../../Root/i18next';
 
+import DropdownList from '../DropdownList';
+
 import styles from './Menu.m.css';
 
 type Props = {
@@ -31,6 +33,16 @@ const CHECKED_VALUES = {
   walletValue: false,
   accountValue: false,
 };
+const LANGS = [
+  {
+    label: '繁體中文',
+    value: 'zh-TW',
+  },
+  {
+    label: 'English',
+    value: 'en-US',
+  },
+];
 
 const Menu = ({
   t,
@@ -46,6 +58,7 @@ const Menu = ({
     accountValue,
   },
   clickTabHandler,
+  clickLangHandler,
 }: Props | PropsFromHOC) => {
   console.log('render pricesValue', pricesValue);
   // console.log('render walletValue', walletValue);
@@ -106,6 +119,11 @@ const Menu = ({
             {t('account')}
           </span>
         </label>
+        <DropdownList
+          value={'zh-TW'}
+          options={LANGS}
+          onChange={clickLangHandler}
+        />
         <div>
           Lang Switch
           <button
@@ -151,6 +169,9 @@ const hoc = compose(
       }, updatedValues);
 
       props.setCheckedValues(updatedValues);
+    },
+    clickLangHandler: props => (lang = 'zh-TW') => {
+      console.log('clickLangHandler!');
     },
   }),
   lifecycle({

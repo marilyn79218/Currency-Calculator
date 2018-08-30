@@ -1,0 +1,153 @@
+.container{
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 14px;
+
+  &:focus > .displayZone{
+    border: 2px solid pink;
+
+    > .placeholder > .display__icon {
+      color: red;
+    }
+
+    > .selected > .display__icon {
+      color: red;
+    }
+
+    > .gray-selected > .display__icon {
+      color: white;
+    }
+  }
+
+  &:focus .collapseZone{
+    border: 1px solid red;
+    z-index: 110;
+  }
+
+  &:focus{
+    outline: 0;
+  }
+}
+
+.container-disabled {
+  composes: container;
+  cursor: not-allowed;
+  background: rgba(26, 10, 10, 0.1);
+  color: rgba(26, 10, 10, 0.2);
+}
+
+.gray-container {
+  composes: container;
+
+  &:focus .displayZone{
+    border: 2px solid white;
+  }
+
+  &:focus .collapseZone{
+    border: 0;
+  }
+}
+
+.displayZone {
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding-right: 8px;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  background: white;
+}
+
+.gray-displayZone{
+  composes: displayZone;
+  border-color: #E0E0E0;
+  background: #362727;
+
+  &::after{
+    color: #FFFFFF;
+  }
+}
+
+.collapseZone{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: absolute;
+  background: white;
+  width: 100%;
+}
+
+.collapse{
+  composes: collapseZone;
+  display: none;
+}
+
+.expand{
+  composes: collapseZone;
+  display: block;
+}
+
+.zBox {
+  position: relative;
+  z-index: 100;
+  background: white;
+}
+
+.options{
+  overflow-y: scroll;
+  min-width: 100%;
+  padding-top: 8px;
+  padding-bottom: 15px;
+  max-height: 200px;
+  box-sizing: border-box;
+}
+
+.gray-options{
+  composes: options;
+  background: #362727;
+}
+
+.option{
+  padding-left: 8px;
+  cursor: pointer;
+
+  &:hover{
+    background: red;
+    color: white;
+  }
+}
+
+.gray-option{
+  composes: option;
+  color: white;
+
+  &:hover{
+    background: rgba(#FFF, 0.2);
+  }
+}
+
+.selected{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: inherit;
+}
+
+.gray-selected{
+  composes: selected;
+  color: white;
+}
+
+.placeholder{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  color: blue;
+}
+
+.gray-placeholder{
+  composes: placeholder;
+  color: rgba(#ffffff, 0.5);
+}

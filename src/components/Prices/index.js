@@ -59,45 +59,41 @@ const Prices = ({
   amount,
   amountChange,
   coinCurrencies,
-}: Props | PropsFromHOC) => {
-  console.log('Prices render', coinCurrencies);
-
-  return (
+}: Props | PropsFromHOC) => (
+  <div
+    className={styles.container}
+  >
     <div
-      className={styles.container}
+      className={styles['money-container']}
     >
-      <div
-        className={styles['money-container']}
-      >
-        <input
-          type="text"
-          className={styles['money-input']}
-          placeholder={t('money_amount')}
-          value={amount > 0 ? amount : ''}
-          onChange={amountChange}
-        />
-      </div>
-      <div
-        className={styles['currency-container']}
-      >
-        {
-          coinCurrencies.map(coinCurrency => (
-            <CoinBlock
-              key={coinCurrency.title}
-              inputAmount={amount}
-              coinCurrency={coinCurrency}
-            />
-          ))
-        }
-      </div>
+      <input
+        type="text"
+        className={styles['money-input']}
+        placeholder={t('money_amount')}
+        value={amount >= 0 ? amount : ''}
+        onChange={amountChange}
+      />
     </div>
-  );
-};
+    <div
+      className={styles['currency-container']}
+    >
+      {
+        coinCurrencies.map(coinCurrency => (
+          <CoinBlock
+            key={coinCurrency.title}
+            inputAmount={amount}
+            coinCurrency={coinCurrency}
+          />
+        ))
+      }
+    </div>
+  </div>
+);
 
 const hoc = compose(
   withRouter,
   translate('default'),
-  withState('amount', 'setAmount', 0),
+  withState('amount', 'setAmount', -1),
   withState('coinCurrencies', 'setCoinCurrencies', COIN_CURRENCIES),
   withHandlers({
     isValidFloat: () => (value) => {
@@ -119,7 +115,12 @@ const hoc = compose(
       const value = e.target.value;
 
       if (!isNaN(Number(value)) && isValidFloat(value)) {
-        setAmount(value);
+        const allChars = value.split('');
+        if (allChars[0] === '0' && allChars[1] === '0') {
+          setAmount(0);
+        } else {
+          setAmount(value);
+        }
       }
     },
   }),

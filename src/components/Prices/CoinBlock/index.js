@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  compose,
+  withProps,
+} from 'recompose';
 
 import styles from './CoinBlock.m.css';
 
@@ -47,4 +51,10 @@ const CoinBlock = ({
   </div>
 );
 
-export default CoinBlock;
+const hoc = compose(
+  withProps(({ inputAmount }) => ({
+    inputAmount: inputAmount < 0 ? 0 : inputAmount,
+  })),
+);
+
+export default hoc(CoinBlock);

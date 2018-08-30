@@ -1,5 +1,6 @@
 {
   "prices": "匯率",
   "wallet": "錢包",
-  "account": "帳戶"
+  "account": "帳戶",
+  "money_amount": "請輸入美金金額"
 }

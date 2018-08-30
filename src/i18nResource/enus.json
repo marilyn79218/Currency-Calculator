@@ -1,5 +1,6 @@
 {
   "prices": "PRICES",
   "wallet": "WALLET",
-  "account": "ACCOUNT"
+  "account": "ACCOUNT",
+  "money_amount": "Input USD Amount"
 }

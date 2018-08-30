@@ -7,11 +7,13 @@ import {
 
 import {
   compose,
-  // withState,
+  withState,
   // withProps,
-  // withHandlers,
+  withHandlers,
   lifecycle,
 } from 'recompose';
+
+import styles from './Prices.m.css';
 
 type Props = {
   // isLabel: boolean,
@@ -24,13 +26,26 @@ type PropsFromHOC = {
 
 const Prices = ({
   t,
+  amount,
+  amountChange,
 }: Props | PropsFromHOC) => {
-  console.log('Prices render');
+  console.log('Prices render', amount);
 
   return (
-    <div>
-      Prices here
-      {t('prices')}
+    <div
+      className={styles.container}
+    >
+      <div
+        className={styles['money-container']}
+      >
+        <input
+          type="text"
+          className={styles['money-input']}
+          placeholder={t('money_amount')}
+          value={amount > 0 ? amount : ''}
+          onChange={amountChange}
+        />
+      </div>
     </div>
   );
 };
@@ -38,6 +53,17 @@ const Prices = ({
 const hoc = compose(
   withRouter,
   translate('default'),
+  withState('amount', 'setAmount', 0),
+  withHandlers({
+    amountChange: props => (e) => {
+      const { setAmount } = props;
+      const value = e.target.value;
+
+      if (!isNaN(Number(value))) {
+        setAmount(value);
+      }
+    },
+  }),
   lifecycle({
     componentDidMount() {
       console.log('Prices componentDidMount', this.props);

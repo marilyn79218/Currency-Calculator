@@ -19,11 +19,7 @@ import DropdownList from '../DropdownList';
 
 import styles from './Menu.m.css';
 
-type Props = {
-  // isLabel: boolean,
-  // labelJob: boolean => Promise<*>,
-};
-
+type Props = {};
 type PropsFromHOC = {
   t: TFunction,
 };

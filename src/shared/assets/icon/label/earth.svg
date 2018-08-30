@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon/label/earth</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icon/label/earth" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="earth" stroke="#9CA6D3" stroke-width="0.968">
+            <path d="M19.947,11.973 C19.947,16.377 16.377,19.946 11.973,19.946 C7.57,19.946 4,16.377 4,11.973 C4,7.57 7.57,4 11.973,4 C16.377,4 19.947,7.57 19.947,11.973 Z" id="earth-path-1"></path>
+            <path d="M16.2693,11.973 C16.2693,16.377 13.7163,19.946 11.9733,19.946 C10.4073,19.946 7.6773,16.377 7.6773,11.973 C7.6773,7.57 10.3173,4 11.9733,4 C13.4413,4 16.2693,7.57 16.2693,11.973 Z" id="earth-path-2"></path>
+            <path d="M11.9734,4.0648 L11.9734,19.8808" id="earth-path-3"></path>
+            <path d="M5.6292,16.6893 C7.0862,15.6603 9.3852,14.9953 11.9732,14.9953 C14.5352,14.9953 16.8152,15.6463 18.2742,16.6583" id="earth-path-4"></path>
+            <path d="M5.6292,7.2025 C7.0862,8.2315 9.3852,8.8965 11.9732,8.8965 C14.5352,8.8965 16.8152,8.2455 18.2742,7.2335" id="earth-path-5"></path>
+            <path d="M4.0291,11.973 L19.9181,11.973" id="earth-path-6"></path>
+        </g>
+    </g>
+</svg>

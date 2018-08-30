@@ -2,5 +2,48 @@
   width: 360px;
   height: 182px;
   box-shadow: 2px 2px 6px 2px gray;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 40px;
+  position: relative;
 }
 
+.row {
+  display: flex;
+  flex-grow: 1;
+}
+
+.coin-names {
+  width: 200px;
+  flex-grow: 1;
+
+  > span {
+    display: block;
+
+    &:nth-child(1) {
+      font-family: Roboto-Medium;
+      font-size: 24px;
+      color: #3A4160;
+      line-height: 35px;
+    }
+
+    &:nth-child(2) {
+      font-family: Roboto-Regular;
+      font-size: 20px;
+      color: #9CA6D3;
+      line-height: 25px;
+    }
+  }
+}
+
+.coin-icon {
+  height: 80px;
+}
+
+.coin-rate {
+  position: relative;
+  font-family: Roboto-Medium;
+  font-size: 24px;
+  color: #3A4160;
+  line-height: 20px;
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>crypto/eth/lightbg</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M199.913234,100.49393 C199.913234,155.448159 155.364975,199.996418 100.410746,199.996418 C45.4575124,199.996418 0.908258706,155.448159 0.908258706,100.49393 C0.908258706,45.5397015 45.4575124,0.991442786 100.410746,0.991442786 C155.364975,0.991442786 199.913234,45.5397015 199.913234,100.49393" id="path-1"></path>
+    </defs>
+    <g id="crypto/eth/lightbg" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ETH">
+            <g id="brand/color/purple1">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#ECF0F1" xlink:href="#path-1"></use>
+            </g>
+            <g id="Group" transform="translate(56.000000, 29.000000)" fill="#3C3C3D">
+                <polygon id="Fill-24" fill-opacity="0.6" points="43.4689458 51.3824561 43.3046125 51.3063158 0.644404167 70.9775439 0.5803625 71.0819298 43.4689458 96.2070175 86.6136958 71.1236842"></polygon>
+                <polygon id="Fill-26" fill-opacity="0.8" opacity="0.8" points="43.4689458 139.516263 84.1728625 81.571 43.4689458 105.234684"></polygon>
+                <polygon id="Fill-28" fill-opacity="0.45" opacity="0.45" points="2.76502917 81.5708772 43.4689458 139.51614 43.4689458 105.234561"></polygon>
+                <polygon id="Fill-1" fill-opacity="0.45" points="0.643920833 70.9770526 0.579879167 71.0814386 43.4684625 96.2065263 43.4684625 51.3819649 43.4684625 -0.00049122807"></polygon>
+                <polygon id="Fill-4" fill-opacity="0.8" points="43.4689458 -0.000368421053 43.4689458 51.3820877 43.4689458 96.2066491 86.6136958 71.1245439"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

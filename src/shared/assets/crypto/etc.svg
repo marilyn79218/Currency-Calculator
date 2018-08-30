@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>crypto/etc</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M199.913234,100.49393 C199.913234,155.448159 155.364975,199.996418 100.410746,199.996418 C45.4575124,199.996418 0.908258706,155.448159 0.908258706,100.49393 C0.908258706,45.5397015 45.4575124,0.991442786 100.410746,0.991442786 C155.364975,0.991442786 199.913234,45.5397015 199.913234,100.49393" id="path-1"></path>
+    </defs>
+    <g id="crypto/etc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Mask" fill="#ECF0F1" xlink:href="#path-1"></use>
+        <g id="Etherium-Classic" mask="url(#mask-2)">
+            <g transform="translate(57.000000, 29.000000)" id="Group">
+                <g>
+                    <polygon id="Shape" fill="#0C8312" fill-rule="nonzero" points="43.4215385 42.5353846 43.4215385 1.77230769 86.4 65.3538462"></polygon>
+                    <polygon id="Shape" fill="#0C8312" fill-rule="nonzero" points="43.4215385 101.243077 43.4215385 142.006154 86.4 78.4246154"></polygon>
+                    <polygon id="Shape" fill="#0C8312" fill-rule="nonzero" points="43.4215385 75.7661538 43.4215385 49.8461538 85.5138462 72"></polygon>
+                    <polygon id="Shape" fill="#034C03" fill-rule="nonzero" points="43.4215385 94.5969231 43.4215385 75.7661538 85.5138462 72"></polygon>
+                    <polygon id="Shape" fill="#3CB93C" fill-rule="nonzero" points="43.4215385 42.5353846 43.4215385 1.77230769 0.443076923 65.3538462"></polygon>
+                    <polygon id="Shape" fill="#3CB93C" fill-rule="nonzero" points="43.4215385 101.243077 43.4215385 142.006154 0.443076923 78.4246154"></polygon>
+                    <polygon id="Shape" fill="#3CB93C" fill-rule="nonzero" points="43.4215385 75.7661538 43.4215385 49.8461538 1.32923077 72"></polygon>
+                    <polygon id="Shape" fill="#166816" fill-rule="nonzero" points="43.4215385 94.5969231 43.4215385 75.7661538 1.32923077 72"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

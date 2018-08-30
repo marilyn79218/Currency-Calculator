@@ -3,6 +3,7 @@ import React from 'react';
 import styles from './CoinBlock.m.css';
 
 type Props = {
+  inputAmount: number,
   coinCurrency: {
     title: string,
     abbName: string,
@@ -12,28 +13,38 @@ type Props = {
 };
 
 const CoinBlock = ({
+  inputAmount,
   coinCurrency: {
     title,
     abbName,
     imgSrc,
     rate,
   },
-}: Props) => {
-  console.log('CoinBlock');
-
-  return (
+}: Props) => (
+  <div
+    className={styles['coin-block']}
+  >
     <div
-      className={styles['coin-block']}
+      className={styles.row}
     >
-      <span>{title}</span>
-      <span>{abbName}</span>
-      <span>{imgSrc}</span>
-      <span>{rate}</span>
+      <p
+        className={styles['coin-names']}
+      >
+        <span>{title}</span>
+        <span>({abbName})</span>
+      </p>
+      <img
+        className={styles['coin-icon']}
+        src={imgSrc}
+        alt="pic"
+      />
     </div>
-  );
-};
-
-// const hoc = compose(
-// );
+    <div
+      className={styles['coin-rate']}
+    >
+      {rate * inputAmount}
+    </div>
+  </div>
+);
 
 export default CoinBlock;

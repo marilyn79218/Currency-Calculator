@@ -58,6 +58,7 @@ const Menu = ({
     accountValue,
   },
   clickTabHandler,
+  langValue,
   clickLangHandler,
 }: Props | PropsFromHOC) => {
   console.log('render pricesValue', pricesValue);
@@ -120,7 +121,7 @@ const Menu = ({
           </span>
         </label>
         <DropdownList
-          value={'zh-TW'}
+          value={langValue}
           options={LANGS}
           onChange={clickLangHandler}
         />
@@ -149,7 +150,10 @@ const Menu = ({
 };
 
 const hoc = compose(
+  withRouter,
+  translate('default'),
   withState('checkedValues', 'setCheckedValues', CHECKED_VALUES),
+  withState('langValue', 'setLangValue', 'zh-TW'),
   withHandlers({
     clickTabHandler: props => (tabName = 'pricesValue') => () => {
       const {
@@ -170,17 +174,35 @@ const hoc = compose(
 
       props.setCheckedValues(updatedValues);
     },
-    clickLangHandler: props => (lang = 'zh-TW') => {
-      console.log('clickLangHandler!');
+    clickLangHandler: props => langObj => {
+      const {
+        history: {
+          push,
+        },
+        setLangValue,
+      } = props;
+      const { value: langValue } = langObj;
+
+      setLangValue(langValue);
+      push(`/${langValue}/prices`);
+      i18n.changeLanguage(langValue);
     },
   }),
   lifecycle({
     componentDidMount() {
-      console.log('componentDidMount', this.props);
+      console.log('componentDidMount', i18n.language);
+      const {
+        history: {
+          push,
+        },
+        setLangValue,
+      } = this.props;
+      const langValue = i18n.language;
+
+      setLangValue(langValue);
+      push(`/${langValue}/prices`);
     },
   }),
-  withRouter,
-  translate('default'),
 );
 
 export default hoc(Menu);

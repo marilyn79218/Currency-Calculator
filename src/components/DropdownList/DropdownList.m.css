@@ -1,6 +1,5 @@
 .container{
   position: relative;
-  /*width: 100%;*/
   box-sizing: border-box;
   font-size: 14px;
 
@@ -9,7 +8,6 @@
   border: #95B0F3;
   background: white;
   margin-left: 40px;
-  top: -5px;
 
   &:focus > .displayZone{
     border: 2px solid #aeefdf;

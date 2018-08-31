@@ -4,6 +4,7 @@ import {
   type TFunction,
   translate,
 } from 'react-i18next';
+import classnames from 'classnames';
 
 import {
   compose,
@@ -63,7 +64,7 @@ const Prices = ({
 }: Props | PropsFromHOC) => (
   <IsDesktopContext.Consumer>
     {
-      () => (
+      isDesktop => (
         <div
           className={styles.container}
         >
@@ -79,12 +80,18 @@ const Prices = ({
             />
           </div>
           <div
-            className={styles['currency-container']}
+            className={
+              classnames({
+                [styles['currency-container']]: isDesktop,
+                [styles['mobile-currency-container']]: !isDesktop,
+              })
+            }
           >
             {
               coinCurrencies.map(coinCurrency => (
                 <CoinBlock
                   key={coinCurrency.title}
+                  isDesktop={isDesktop}
                   inputAmount={amount}
                   coinCurrency={coinCurrency}
                 />

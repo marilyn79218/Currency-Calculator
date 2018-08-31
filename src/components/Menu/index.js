@@ -1,9 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import {
-  type TFunction,
-  translate,
-} from 'react-i18next';
 
 import {
   compose,
@@ -13,8 +9,8 @@ import {
 import classnames from 'classnames';
 
 import { IsDesktopContext } from '../../shared/contexts';
-// import DropdownList from '../DropdownList';
 import LangSwitcher from '../LangSwitcher';
+import Tab from './Tab';
 import PricesIconSVG from '../../shared/assets/icon/navi/prices@1.5x.svg';
 import PricesCheckedIconSVG from '../../shared/assets/icon/navi/prices_active@1.5x.svg';
 import WalletIconSVG from '../../shared/assets/icon/navi/wallet@1.5x.svg';
@@ -35,7 +31,11 @@ type Props = {
   clickLangHandler?: LangObj => any,
 };
 type PropsFromHOC = {
-  t: TFunction,
+  checkedValues: {
+    prices: boolean,
+    wallet: boolean,
+    account: boolean,
+  },
 };
 
 const CHECKED_VALUES = {
@@ -43,20 +43,30 @@ const CHECKED_VALUES = {
   wallet: false,
   account: false,
 };
+const TAB_NAMES = ['prices', 'wallet', 'account'];
+const ICON_SRCES = {
+  prices: {
+    iconSrc: PricesIconSVG,
+    checkedIconSrc: PricesCheckedIconSVG,
+  },
+  wallet: {
+    iconSrc: WalletIconSVG,
+    checkedIconSrc: WalletCheckedIconSVG,
+  },
+  account: {
+    iconSrc: AccountIconSVG,
+    checkedIconSrc: AccountCheckedIconSVG,
+  },
+};
 
 const Menu = ({
-  t,
-  checkedValues: {
-    prices: pricesChecked,
-    wallet: walletChecked,
-    account: accountChecked,
-  },
+  checkedValues,
   clickTabHandler,
   LANG_OPTIONS,
   langValue,
   clickLangHandler,
 }: Props | PropsFromHOC) => {
-  console.log('Menu render');
+  console.log('Menu render', checkedValues);
 
   return (
     <IsDesktopContext.Consumer>
@@ -78,99 +88,19 @@ const Menu = ({
                 })
               }
             >
-              <input
-                id="price-checkbox"
-                className={styles['price-checkbox-style']}
-                type="checkbox"
-                role="button"
-                checked={pricesChecked}
-                onChange={clickTabHandler('prices')}
-              />
-              <label
-                className={styles['price-label']}
-                htmlFor="price-checkbox"
-              >
-                {
-                  isDesktop ? (
-                    <span>
-                      {t('prices')}
-                    </span>
-                  ) : (
-                    <Fragment>
-                      <img
-                        className={styles['mobile-icon']}
-                        src={pricesChecked ? PricesCheckedIconSVG : PricesIconSVG}
-                        alt="pic"
-                      />
-                      <span>
-                        {t('prices')}
-                      </span>
-                    </Fragment>
-                  )
-                }
-              </label>
-              <input
-                id="wallet-checkbox"
-                className={styles['wallet-checkbox-style']}
-                type="checkbox"
-                role="button"
-                checked={walletChecked}
-                onChange={clickTabHandler('wallet')}
-              />
-              <label
-                className={styles['wallet-label']}
-                htmlFor="wallet-checkbox"
-              >
-                {
-                  isDesktop ? (
-                    <span>
-                      {t('wallet')}
-                    </span>
-                  ) : (
-                    <Fragment>
-                      <img
-                        className={styles['mobile-icon']}
-                        src={walletChecked ? WalletCheckedIconSVG : WalletIconSVG}
-                        alt="pic"
-                      />
-                      <span>
-                        {t('wallet')}
-                      </span>
-                    </Fragment>
-                  )
-                }
-              </label>
-              <input
-                id="account-checkbox"
-                className={styles['account-checkbox-style']}
-                type="checkbox"
-                role="button"
-                checked={accountChecked}
-                onChange={clickTabHandler('account')}
-              />
-              <label
-                className={styles['account-label']}
-                htmlFor="account-checkbox"
-              >
-                {
-                  isDesktop ? (
-                    <span>
-                      {t('account')}
-                    </span>
-                  ) : (
-                    <Fragment>
-                      <img
-                        className={styles['mobile-icon']}
-                        src={accountChecked ? AccountCheckedIconSVG : AccountIconSVG}
-                        alt="pic"
-                      />
-                      <span>
-                        {t('account')}
-                      </span>
-                    </Fragment>
-                  )
-                }
-              </label>
+              {
+                TAB_NAMES.map(tabName => (
+                  <Tab
+                    key={tabName}
+                    isDesktop={isDesktop}
+                    tabName={tabName}
+                    checked={checkedValues[tabName]}
+                    onChange={clickTabHandler(tabName)}
+                    iconSrc={ICON_SRCES[tabName].iconSrc}
+                    checkedIconSrc={ICON_SRCES[tabName].checkedIconSrc}
+                  />
+                ))
+              }
               {
                 isDesktop ? (
                   <LangSwitcher
@@ -191,7 +121,6 @@ const Menu = ({
 
 const hoc = compose(
   withRouter,
-  translate('default'),
   withState('checkedValues', 'setCheckedValues', CHECKED_VALUES),
   withHandlers({
     clickTabHandler: props => (nextTabName = 'prices') => () => {

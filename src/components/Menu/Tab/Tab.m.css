@@ -1,0 +1,24 @@
+.prices-checkbox-style:checked + .tab-label {
+  color: #3F5498;
+}
+.wallet-checkbox-style:checked + .tab-label {
+  color: #3F5498;
+}
+.account-checkbox-style:checked + .tab-label {
+  color: #3F5498;
+}
+
+
+.mobile-icon {
+  display: block;
+  padding-bottom: 3px;
+  margin: 0 auto;
+  text-align: center;
+
+  ~ span {
+    display: block;
+    font-family: OpenSans-Semibold;
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+}

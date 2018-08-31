@@ -45,36 +45,3 @@
     margin-left: 0;
   }
 }
-
-.price-checkbox-style:checked ~ .price-label {
-  color: #3F5498;
-}
-
-.wallet-checkbox-style:checked ~ .wallet-label {
-  color: #3F5498;
-}
-
-.account-checkbox-style:checked ~ .account-label {
-  color: #3F5498;
-}
-
-.price-label {
-  font-family: OpenSans-Semibold;
-  font-size: 16px;
-  color: rgba(74,74,74,0.25);
-  letter-spacing: 0;
-}
-
-.mobile-icon {
-  display: block;
-  padding-bottom: 3px;
-  margin: 0 auto;
-  text-align: center;
-
-  ~ span {
-    display: block;
-    font-family: OpenSans-Semibold;
-    font-size: 12px;
-    letter-spacing: 0;
-  }
-}

@@ -1,17 +1,71 @@
 // @flow
-import * as React from 'react';
+import React, { Fragment } from 'react';
+import MediaQuery from 'react-responsive';
 
+import { IsDesktopContext } from '../../shared/contexts';
+import LangWrapper from '../LangWrapper';
+import LangSwitcher from '../LangSwitcher';
 import Menu from '../Menu';
+
+import styles from './App.m.css';
 
 type Props = {
   children: React.Node,
 };
 
+/* eslint-disable */
 const App = ({ children }: Props) => (
-  <div>
-    <Menu />
-    {children}
-  </div>
+  <Fragment>
+    <MediaQuery minWidth={768}>
+      <IsDesktopContext.Provider
+        value={true}
+      >
+        <LangWrapper
+          renderProps={({
+            LANG_OPTIONS,
+            langValue,
+            clickLangHandler,
+          }) => (
+            <div>
+              <Menu
+                LANG_OPTIONS={LANG_OPTIONS}
+                langValue={langValue}
+                clickLangHandler={clickLangHandler}
+              />
+              {children}
+            </div>
+          )}
+        />
+      </IsDesktopContext.Provider>
+    </MediaQuery>
+    <MediaQuery maxWidth={767}>
+      <IsDesktopContext.Provider
+        value={false}
+      >
+        <LangWrapper
+          renderProps={({
+            LANG_OPTIONS,
+            langValue,
+            clickLangHandler,
+          }) => (
+            <div
+              className={styles['app-mobile-container']}
+            >
+              <Menu
+                langValue={langValue}
+              />
+              {children}
+              <LangSwitcher
+                value={langValue}
+                options={LANG_OPTIONS}
+                onChange={clickLangHandler}
+              />
+            </div>
+          )}
+        />
+      </IsDesktopContext.Provider>
+    </MediaQuery>
+  </Fragment>
 );
 
 export default App;

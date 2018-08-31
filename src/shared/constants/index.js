@@ -20,3 +20,4 @@ export const LOGIN_STATUS = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAIL: 'LOGIN_FAIL',
 };
+export const HOME_PAGE = 'prices';

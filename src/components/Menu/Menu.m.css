@@ -3,6 +3,12 @@
   padding: 16px 5%;
   box-shadow: 0 -4px 16px 0;
 }
+.mobile-container {
+  composes: container;
+  padding: 0;
+  display: flex;
+  height: 56px;
+}
 
 .menu {
   position: relative;
@@ -28,6 +34,17 @@
     }
   }
 }
+.mobile-menu {
+  composes: menu;
+  margin: 0;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
+
+  > label {
+    margin-left: 0;
+  }
+}
 
 .price-checkbox-style:checked ~ .price-label {
   color: #3F5498;
@@ -48,3 +65,16 @@
   letter-spacing: 0;
 }
 
+.mobile-icon {
+  display: block;
+  padding-bottom: 3px;
+  margin: 0 auto;
+  text-align: center;
+
+  ~ span {
+    display: block;
+    font-family: OpenSans-Semibold;
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+}

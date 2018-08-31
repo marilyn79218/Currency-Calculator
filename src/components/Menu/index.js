@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import {
   type TFunction,
@@ -8,18 +8,31 @@ import {
 import {
   compose,
   withState,
-  // withProps,
   withHandlers,
-  lifecycle,
 } from 'recompose';
+import classnames from 'classnames';
 
-import i18n from '../../Root/i18next';
-
+import { IsDesktopContext } from '../../shared/contexts';
 import DropdownList from '../DropdownList';
+import PricesIconSVG from '../../shared/assets/icon/navi/prices@1.5x.svg';
+import PricesCheckedIconSVG from '../../shared/assets/icon/navi/prices_active@1.5x.svg';
+import WalletIconSVG from '../../shared/assets/icon/navi/wallet@1.5x.svg';
+import WalletCheckedIconSVG from '../../shared/assets/icon/navi/wallet_active@1.5x.svg';
+import AccountIconSVG from '../../shared/assets/icon/navi/account@1.5x.svg';
+import AccountCheckedIconSVG from '../../shared/assets/icon/navi/account_active@1.5x.svg';
 
 import styles from './Menu.m.css';
 
-type Props = {};
+type LangObj = {
+  value: string,
+  label: string,
+};
+
+type Props = {
+  LANG_OPTIONS?: Array<LangObj>,
+  langValue: string,
+  clickLangHandler?: LangObj => any,
+};
 type PropsFromHOC = {
   t: TFunction,
 };
@@ -29,97 +42,148 @@ const CHECKED_VALUES = {
   wallet: false,
   account: false,
 };
-const LANGS = [
-  {
-    label: '繁體中文',
-    value: 'zh-TW',
-  },
-  {
-    label: 'English',
-    value: 'en-US',
-  },
-];
 
 const Menu = ({
   t,
-  // location: {
-  //   pathname,
-  // },
   checkedValues: {
     prices: pricesChecked,
     wallet: walletChecked,
     account: accountChecked,
   },
   clickTabHandler,
+  LANG_OPTIONS,
   langValue,
   clickLangHandler,
 }: Props | PropsFromHOC) => {
   console.log('Menu render');
-  // console.log('render walletValue', walletValue);
-  // console.log('render accountValue', accountValue);
 
   return (
-    <div
-      className={styles.container}
-    >
-      <div
-        className={styles.menu}
-      >
-        <input
-          id="price-checkbox"
-          className={styles['price-checkbox-style']}
-          type="checkbox"
-          role="button"
-          checked={pricesChecked}
-          onChange={clickTabHandler('prices')}
-        />
-        <label
-          className={styles['price-label']}
-          htmlFor="price-checkbox"
-        >
-          <span>
-            {t('prices')}
-          </span>
-        </label>
-        <input
-          id="wallet-checkbox"
-          className={styles['wallet-checkbox-style']}
-          type="checkbox"
-          role="button"
-          checked={walletChecked}
-          onChange={clickTabHandler('wallet')}
-        />
-        <label
-          className={styles['wallet-label']}
-          htmlFor="wallet-checkbox"
-        >
-          <span>
-            {t('wallet')}
-          </span>
-        </label>
-        <input
-          id="account-checkbox"
-          className={styles['account-checkbox-style']}
-          type="checkbox"
-          role="button"
-          checked={accountChecked}
-          onChange={clickTabHandler('account')}
-        />
-        <label
-          className={styles['account-label']}
-          htmlFor="account-checkbox"
-        >
-          <span>
-            {t('account')}
-          </span>
-        </label>
-        <DropdownList
-          value={langValue}
-          options={LANGS}
-          onChange={clickLangHandler}
-        />
-      </div>
-    </div>
+    <IsDesktopContext.Consumer>
+      {
+        isDesktop => (
+          <div
+            className={
+              classnames({
+                [styles.container]: isDesktop,
+                [styles['mobile-container']]: !isDesktop,
+              })
+            }
+          >
+            <div
+              className={
+                classnames({
+                  [styles.menu]: isDesktop,
+                  [styles['mobile-menu']]: !isDesktop,
+                })
+              }
+            >
+              <input
+                id="price-checkbox"
+                className={styles['price-checkbox-style']}
+                type="checkbox"
+                role="button"
+                checked={pricesChecked}
+                onChange={clickTabHandler('prices')}
+              />
+              <label
+                className={styles['price-label']}
+                htmlFor="price-checkbox"
+              >
+                {
+                  isDesktop ? (
+                    <span>
+                      {t('prices')}
+                    </span>
+                  ) : (
+                    <Fragment>
+                      <img
+                        className={styles['mobile-icon']}
+                        src={pricesChecked ? PricesCheckedIconSVG : PricesIconSVG}
+                        alt="pic"
+                      />
+                      <span>
+                        {t('prices')}
+                      </span>
+                    </Fragment>
+                  )
+                }
+              </label>
+              <input
+                id="wallet-checkbox"
+                className={styles['wallet-checkbox-style']}
+                type="checkbox"
+                role="button"
+                checked={walletChecked}
+                onChange={clickTabHandler('wallet')}
+              />
+              <label
+                className={styles['wallet-label']}
+                htmlFor="wallet-checkbox"
+              >
+                {
+                  isDesktop ? (
+                    <span>
+                      {t('wallet')}
+                    </span>
+                  ) : (
+                    <Fragment>
+                      <img
+                        className={styles['mobile-icon']}
+                        src={walletChecked ? WalletCheckedIconSVG : WalletIconSVG}
+                        alt="pic"
+                      />
+                      <span>
+                        {t('wallet')}
+                      </span>
+                    </Fragment>
+                  )
+                }
+              </label>
+              <input
+                id="account-checkbox"
+                className={styles['account-checkbox-style']}
+                type="checkbox"
+                role="button"
+                checked={accountChecked}
+                onChange={clickTabHandler('account')}
+              />
+              <label
+                className={styles['account-label']}
+                htmlFor="account-checkbox"
+              >
+                {
+                  isDesktop ? (
+                    <span>
+                      {t('account')}
+                    </span>
+                  ) : (
+                    <Fragment>
+                      <img
+                        className={styles['mobile-icon']}
+                        src={accountChecked ? AccountCheckedIconSVG : AccountIconSVG}
+                        alt="pic"
+                      />
+                      <span>
+                        {t('account')}
+                      </span>
+                    </Fragment>
+                  )
+                }
+              </label>
+              {
+                isDesktop ? (
+                  <DropdownList
+                    value={langValue}
+                    options={LANG_OPTIONS}
+                    onChange={clickLangHandler}
+                  />
+                ) : null
+              }
+            </div>
+          </div>
+        )
+      }
+    </IsDesktopContext.Consumer>
   );
 };
 
@@ -127,7 +191,6 @@ const hoc = compose(
   withRouter,
   translate('default'),
   withState('checkedValues', 'setCheckedValues', CHECKED_VALUES),
-  withState('langValue', 'setLangValue', 'zh-TW'),
   withHandlers({
     clickTabHandler: props => (nextTabName = 'prices') => () => {
       const {
@@ -153,39 +216,6 @@ const hoc = compose(
 
       setCheckedValues(updatedValues);
       push(`/${curLangValue}/${nextTabName}`);
-    },
-    clickLangHandler: props => langObj => {
-      const {
-        history: {
-          push,
-        },
-        location: {
-          pathname,
-        },
-        setLangValue,
-      } = props;
-      const { value: nextLangValue } = langObj;
-      const curTab = pathname.split('/')[2];
-      // console.log('clickLangHandler', props);
-
-      setLangValue(nextLangValue);
-      push(`/${nextLangValue}/${curTab}`);
-      i18n.changeLanguage(nextLangValue);
-    },
-  }),
-  lifecycle({
-    componentDidMount() {
-      // console.log('Menu componentDidMount', i18n.language);
-      const {
-        history: {
-          push,
-        },
-        setLangValue,
-      } = this.props;
-      const langValue = i18n.language;
-
-      setLangValue(langValue);
-      push(`/${langValue}/prices`);
     },
   }),
 );

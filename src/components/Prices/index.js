@@ -12,6 +12,7 @@ import {
   lifecycle,
 } from 'recompose';
 
+import { IsDesktopContext } from '../../shared/contexts';
 import BTCIconSVG from '../../shared/assets/crypto/btc/lightbg.svg';
 import ETHIconSVG from '../../shared/assets/crypto/eth/lightbg.svg';
 import ETCIconSVG from '../../shared/assets/crypto/etc.svg';
@@ -60,34 +61,40 @@ const Prices = ({
   amountChange,
   coinCurrencies,
 }: Props | PropsFromHOC) => (
-  <div
-    className={styles.container}
-  >
-    <div
-      className={styles['money-container']}
-    >
-      <input
-        type="text"
-        className={styles['money-input']}
-        placeholder={t('money_amount')}
-        value={amount >= 0 ? amount : ''}
-        onChange={amountChange}
-      />
-    </div>
-    <div
-      className={styles['currency-container']}
-    >
-      {
-        coinCurrencies.map(coinCurrency => (
-          <CoinBlock
-            key={coinCurrency.title}
-            inputAmount={amount}
-            coinCurrency={coinCurrency}
-          />
-        ))
-      }
-    </div>
-  </div>
+  <IsDesktopContext.Consumer>
+    {
+      () => (
+        <div
+          className={styles.container}
+        >
+          <div
+            className={styles['money-container']}
+          >
+            <input
+              type="text"
+              className={styles['money-input']}
+              placeholder={t('money_amount')}
+              value={amount >= 0 ? amount : ''}
+              onChange={amountChange}
+            />
+          </div>
+          <div
+            className={styles['currency-container']}
+          >
+            {
+              coinCurrencies.map(coinCurrency => (
+                <CoinBlock
+                  key={coinCurrency.title}
+                  inputAmount={amount}
+                  coinCurrency={coinCurrency}
+                />
+              ))
+            }
+          </div>
+        </div>
+      )
+    }
+  </IsDesktopContext.Consumer>
 );
 
 const hoc = compose(

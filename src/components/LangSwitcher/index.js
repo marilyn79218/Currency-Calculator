@@ -6,6 +6,7 @@ import {
 } from 'recompose';
 
 import EarchIconSVG from '../../shared/assets/icon/label/earth.svg';
+import ArrowDownPNG from '../../shared/assets/icon-small-arrow-down.png';
 import DropdownList from '../DropdownList';
 
 import { HOME_PAGE } from '../../shared/constants';
@@ -37,32 +38,49 @@ const LangSwitcher = ({
 }: Props | PropsFromHOC) => (
   <Fragment>
     {
-      curTabName === HOME_PAGE ? (
-        <div
-          className={styles['mobile-align']}
-        >
-          {
-            !isDesktop ? (
-              <img
-                style={{
-                  height: '24px',
-                  position: 'relative',
-                  left: '21px',
-                  zIndex: 1,
-                }}
-                src={EarchIconSVG}
-                pic="pic"
-              />
-            ) : null
-          }
+      !isDesktop ? (
+        curTabName === HOME_PAGE ? (
+          <div
+            className={styles['mobile-align']}
+          >
+            <img
+              style={{
+                height: '24px',
+                position: 'relative',
+                left: '21px',
+                zIndex: 1,
+              }}
+              src={EarchIconSVG}
+              alt="pic"
+            />
+            <DropdownList
+              isDesktop={isDesktop}
+              value={value}
+              options={options}
+              onChange={clickLangHandler}
+            />
+            <img
+              className={styles['mobile-arrow-down']}
+              src={ArrowDownPNG}
+              alt="pic"
+            />
+          </div>
+        ) : null
+      ) : (
+        <Fragment>
           <DropdownList
             isDesktop={isDesktop}
             value={value}
             options={options}
             onChange={clickLangHandler}
           />
-        </div>
-      ) : null
+          <img
+            className={styles['arrow-down']}
+            src={ArrowDownPNG}
+            alt="pic"
+          />
+        </Fragment>
+      )
     }
   </Fragment>
 );

@@ -2,3 +2,15 @@
   display: flex;
   position: relative;
 }
+
+.arrow-down {
+  position: relative;
+  height: 16px;
+  position: relative;
+  right: 23px;
+}
+
+.mobile-arrow-down {
+  composes: arrow-down;
+  top: 4px;
+}

@@ -21,3 +21,4 @@ export const LOGIN_STATUS = {
   LOGIN_FAIL: 'LOGIN_FAIL',
 };
 export const HOME_PAGE = 'prices';
+export const TAB_NAMES = ['prices', 'wallet', 'account'];

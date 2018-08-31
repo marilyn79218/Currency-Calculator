@@ -7,6 +7,7 @@ import {
   lifecycle,
 } from 'recompose';
 
+import { TAB_NAMES } from '../../shared/constants';
 import i18n from '../../Root/i18next';
 
 type LangObj = {
@@ -73,6 +74,7 @@ const hoc = compose(
       push(`/${nextLangValue}/${curTab}`);
       i18n.changeLanguage(nextLangValue);
     },
+    isValidTabName: () => tabName => TAB_NAMES.includes(tabName),
   }),
   lifecycle({
     componentDidMount() {
@@ -80,12 +82,21 @@ const hoc = compose(
         history: {
           push,
         },
+        location: {
+          pathname,
+        },
         setLangValue,
+        isValidTabName,
       } = this.props;
       const curLangValue = i18n.language;
+      const curTabName = pathname.split('/')[2];
 
       setLangValue(curLangValue);
-      push(`/${curLangValue}/prices`);
+      if (isValidTabName(curTabName)) {
+        push(`/${curLangValue}/${curTabName}`);
+      } else {
+        push(`/${curLangValue}/prices`);
+      }
     },
   }),
 );

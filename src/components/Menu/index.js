@@ -5,10 +5,12 @@ import {
   compose,
   withState,
   withHandlers,
+  lifecycle,
 } from 'recompose';
 import classnames from 'classnames';
 
 import { IsDesktopContext } from '../../shared/contexts';
+import { TAB_NAMES } from '../../shared/constants';
 import LangSwitcher from '../LangSwitcher';
 import Tab from './Tab';
 import PricesIconSVG from '../../shared/assets/icon/navi/prices@1.5x.svg';
@@ -43,7 +45,6 @@ const CHECKED_VALUES = {
   wallet: false,
   account: false,
 };
-const TAB_NAMES = ['prices', 'wallet', 'account'];
 const ICON_SRCES = {
   prices: {
     iconSrc: PricesIconSVG,
@@ -148,7 +149,34 @@ const hoc = compose(
       setCheckedValues(updatedValues);
       push(`/${curLangValue}/${nextTabName}`);
     },
+    isValidTabName: () => tabName => TAB_NAMES.includes(tabName),
   }),
+  lifecycle({
+    componentDidMount() {
+      const {
+        location: {
+          pathname,
+        },
+        isValidTabName,
+        setCheckedValues,
+      } = this.props;
+
+      const curTabName = pathname.split('/')[2];
+      if (isValidTabName(curTabName)) {
+        const updatedValues = TAB_NAMES.reduce((pV, cV) => {
+          if (cV !== curTabName) {
+            pV[cV] = false;
+          } else {
+            pV[cV] = true;
+          }
+
+          return pV;
+        }, {});
+
+        setCheckedValues(updatedValues);
+      }
+    },
+  })
 );
 
 export default hoc(Menu);

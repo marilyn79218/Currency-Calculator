@@ -25,6 +25,10 @@
     border-bottom: 1px solid #3F5498;
   }
 }
+.mobile-money-input {
+  composes: money-input;
+  width: 90%;
+}
 
 .money-input::-webkit-input-placeholder {
   color: #D8D8D8;

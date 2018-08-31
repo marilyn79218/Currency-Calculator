@@ -73,7 +73,12 @@ const Prices = ({
           >
             <input
               type="text"
-              className={styles['money-input']}
+              className={
+                classnames({
+                  [styles['money-input']]: isDesktop,
+                  [styles['mobile-money-input']]: !isDesktop,
+                })
+              }
               placeholder={t('money_amount')}
               value={amount >= 0 ? amount : ''}
               onChange={amountChange}

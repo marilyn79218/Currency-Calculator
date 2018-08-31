@@ -14,6 +14,7 @@ import classnames from 'classnames';
 
 import { IsDesktopContext } from '../../shared/contexts';
 import DropdownList from '../DropdownList';
+// import LangSwitcher from '../LangSwitcher';
 import PricesIconSVG from '../../shared/assets/icon/navi/prices@1.5x.svg';
 import PricesCheckedIconSVG from '../../shared/assets/icon/navi/prices_active@1.5x.svg';
 import WalletIconSVG from '../../shared/assets/icon/navi/wallet@1.5x.svg';
@@ -173,6 +174,7 @@ const Menu = ({
               {
                 isDesktop ? (
                   <DropdownList
+                    isDesktop={isDesktop}
                     value={langValue}
                     options={LANG_OPTIONS}
                     onChange={clickLangHandler}

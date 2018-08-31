@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import {
   compose,
   withProps,
 } from 'recompose';
 
+import EarchIconSVG from '../../shared/assets/icon/label/earth.svg';
 import DropdownList from '../DropdownList';
 
 import { HOME_PAGE } from '../../shared/constants';
@@ -17,6 +18,7 @@ type LangObj = {
 };
 
 type Props = {
+  isDesktop: boolean,
   options: Array<LangObj>,
   value: string,
   onChange: LangObj => any,
@@ -25,25 +27,44 @@ type PropsFromHOC = {
   curTabName: string,
 };
 
+/* eslint-disable */
 const LangSwitcher = ({
+  isDesktop,
   curTabName,
   value,
   options,
   onChange: clickLangHandler,
 }: Props | PropsFromHOC) => (
-  <div
-    className={styles['mobile-lang-switcher']}
-  >
+  <Fragment>
     {
       curTabName === HOME_PAGE ? (
-        <DropdownList
-          value={value}
-          options={options}
-          onChange={clickLangHandler}
-        />
+        <div
+          className={styles['mobile-align']}
+        >
+          {
+            !isDesktop ? (
+              <img
+                style={{
+                  height: '24px',
+                  position: 'relative',
+                  left: '21px',
+                  zIndex: 1,
+                }}
+                src={EarchIconSVG}
+                pic="pic"
+              />
+            ) : null
+          }
+          <DropdownList
+            isDesktop={isDesktop}
+            value={value}
+            options={options}
+            onChange={clickLangHandler}
+          />
+        </div>
       ) : null
     }
-  </div>
+  </Fragment>
 );
 
 const hoc = compose(

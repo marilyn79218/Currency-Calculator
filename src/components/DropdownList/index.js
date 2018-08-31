@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
+// import EarchIconSVG from '../../shared/assets/icon/label/earth.svg';
+
 import styles from './DropdownList.m.css';
 
 const makeHash = (length = 5) => (
@@ -86,13 +88,15 @@ class DropdownList extends React.PureComponent {
                           && isReverse(this.container.getBoundingClientRect().bottom)
       ? { bottom: '100%' }
       : null;
+    const { isDesktop } = this.props;
 
     return (
       <div
         className={
           classnames({
-            [styles['gray-container-disabled']]: this.props.disabled,
-            [styles['gray-container']]: !this.props.disabled,
+            [styles['gray-container-disabled']]: this.props.disabled && isDesktop,
+            [styles['gray-container']]: !this.props.disabled && isDesktop,
+            [styles['mobile-gray-container']]: !isDesktop,
           })
         }
         tabIndex="0"
@@ -100,7 +104,12 @@ class DropdownList extends React.PureComponent {
         ref={(node) => { this.container = node; }}
       >
         <div
-          className={styles['gray-displayZone']}
+          className={
+            classnames({
+              [styles['gray-displayZone']]: isDesktop,
+              [styles['mobile-gray-displayZone']]: !isDesktop,
+            })
+          }
           onClick={this.state.collapse ? this.handleExpand : this.handleCollapse}
         >
           {this.getDisplay().map(option => (
@@ -120,6 +129,11 @@ class DropdownList extends React.PureComponent {
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
                   cursor: 'default',
+                  fontFamily: 'Roboto-Regular',
+                  fontSize: '12px',
+                  color: '#3A4160',
+                  textAlign: 'center',
+                  lineHeight: '16px',
                 }}
               >
                 {option.label}

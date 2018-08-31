@@ -55,11 +55,16 @@ const App = ({ children }: Props) => (
                 langValue={langValue}
               />
               {children}
-              <LangSwitcher
-                value={langValue}
-                options={LANG_OPTIONS}
-                onChange={clickLangHandler}
-              />
+              <div
+                className={styles['app-mobile-langswitcher']}
+              >
+                <LangSwitcher
+                  isDesktop={false}
+                  value={langValue}
+                  options={LANG_OPTIONS}
+                  onChange={clickLangHandler}
+                />
+              </div>
             </div>
           )}
         />

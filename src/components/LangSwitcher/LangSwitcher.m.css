@@ -1,6 +1,4 @@
-.mobile-lang-switcher {
-  position: relative;
-  min-height: 140px;
+.mobile-align {
   display: flex;
-  justify-content: center;
+  position: relative;
 }

@@ -8,7 +8,7 @@ A React project which imeplements currency calculator for USD dollar.
 2.  Without leading zero dollar.
 3.  Responsive web design for mobile devices.
 4.  Implements breadcrumbs and switching langs in Navbar.
-5.  Redirect to prices page if URL invalid.
+5.  Redirect to prices page if URL/ user language unrecognizable.
 
 ## Developing Features
 1.  React.js & Redux
@@ -28,6 +28,9 @@ MITHRIL_API_HOST="https://api.coinbase.com" yarn start
 
 # lint
 yarn lint
+
+# flow-type
+yarn flow
 ```
 
 [df1]: <https://flow.org/>

@@ -112,7 +112,6 @@ const Prices = ({
 const hoc = compose(
   withRouter,
   translate('default'),
-  withState('amount', 'setAmount', -1),
   withState('coinCurrencies', 'setCoinCurrencies', COIN_CURRENCIES),
   withHandlers({
     isValidFloat: () => (value) => {

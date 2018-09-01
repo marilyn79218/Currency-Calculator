@@ -6,7 +6,7 @@ import {
   LOG_OUT_CALLBACK,
 } from '../actions/types';
 import authReducer from './authReducer';
-
+import pricesReducer from './pricesReducer';
 
 export type AllState = {
   auth: mixed,
@@ -18,6 +18,7 @@ type AppReducers = (allState?: AllState, action: { type: string }) => AllState;
 const appReducers: AppReducers = combineReducers({
   auth: authReducer,
   router: routerReducer,
+  prices: pricesReducer,
 });
 
 type Reducers = (state: AllState, action: {

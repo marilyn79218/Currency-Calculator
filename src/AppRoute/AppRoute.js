@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import App from '../components/app';
-import Prices from '../components/Prices';
+import Prices from '../containers/Prices';
 import Wallet from '../components/Wallet';
 import Account from '../components/Account';
 

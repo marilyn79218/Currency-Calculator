@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
-// import EarchIconSVG from '../../shared/assets/icon/label/earth.svg';
-
 import styles from './DropdownList.m.css';
 
 const makeHash = (length = 5) => (

@@ -5,21 +5,25 @@ import {
   translate,
 } from 'react-i18next';
 import classnames from 'classnames';
-
 import {
   compose,
   withHandlers,
   lifecycle,
 } from 'recompose';
 
+import { Currency } from '../../shared/types/pricesTypes';
 import { IsDesktopContext } from '../../shared/contexts';
 import CoinBlock from './CoinBlock';
 
 import styles from './Prices.m.css';
 
-type Props = {};
+type Props = {
+  amount: number,
+  currencies: Array<Currency>,
+};
 type PropsFromHOC = {
   t: TFunction,
+  amountChange: (e: SyntheticEvent<>) => mixed,
 };
 
 const Prices = ({

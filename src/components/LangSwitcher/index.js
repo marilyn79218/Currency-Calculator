@@ -7,7 +7,7 @@ import {
 
 import EarchIconSVG from '../../shared/assets/icon/label/earth.svg';
 import ArrowDownPNG from '../../shared/assets/icon-small-arrow-down.png';
-import DropdownList from '../DropdownList';
+import DropdownList from './DropdownList';
 
 import { HOME_PAGE } from '../../shared/constants';
 import styles from './LangSwitcher.m.css';

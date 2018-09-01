@@ -7,7 +7,7 @@ import {
 import type {
   AllState,
 } from '../reducers';
-import { CoinCurrency } from '../shared/types/pricesTypes';
+import { Currency } from '../shared/types/pricesTypes';
 
 const fromPrices: AllState => any = prop('prices');
 
@@ -17,8 +17,8 @@ export const getAmount: GetAmount = compose(
   fromPrices,
 );
 
-type GetCoinCurrencies = AllState => Array<CoinCurrency>;
-export const getCoinCurrencies: GetCoinCurrencies = compose(
-  prop('coinCurrencies'),
+type GetCurrencies = AllState => Array<Currency>;
+export const getCurrencies: GetCurrencies = compose(
+  prop('currencies'),
   fromPrices,
 );

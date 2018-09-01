@@ -26,7 +26,7 @@ const Prices = ({
   t,
   amount,
   amountChange,
-  coinCurrencies,
+  currencies,
 }: Props | PropsFromHOC) => (
   <IsDesktopContext.Consumer>
     {
@@ -59,12 +59,12 @@ const Prices = ({
             }
           >
             {
-              coinCurrencies.map(coinCurrency => (
+              currencies.map(currency => (
                 <CoinBlock
-                  key={coinCurrency.title}
+                  key={currency.title}
                   isDesktop={isDesktop}
                   inputAmount={amount}
-                  coinCurrency={coinCurrency}
+                  currency={currency}
                 />
               ))
             }
@@ -78,7 +78,6 @@ const Prices = ({
 const hoc = compose(
   withRouter,
   translate('default'),
-  // withState('coinCurrencies', 'setCoinCurrencies', COIN_CURRENCIES),
   withHandlers({
     isValidFloat: () => (value) => {
       const floatDigits = value.split('.')[1];
@@ -110,7 +109,7 @@ const hoc = compose(
   }),
   lifecycle({
     componentDidMount() {
-      this.props.getCurrencies();
+      this.props.requestCurrencies();
     },
   }),
 );

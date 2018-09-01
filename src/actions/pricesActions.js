@@ -5,25 +5,25 @@ import type {
 } from '../shared/types/reduxTypes';
 import {
   SET_AMOUNT,
-  SET_COIN_CURRENCIES,
+  SET_CURRENCIES,
 } from './types';
 import { CoinCurrency } from '../shared/types/pricesTypes';
 
 import { getRate as getRateApi } from '../apis/pricesApi';
-import { COIN_CURRENCIES } from '../shared/constants';
+import { INIT_CURRENCIES } from '../shared/constants';
 
 export const setAmount = (amount: number) => ({
   type: SET_AMOUNT,
   payload: amount,
 });
 
-const setCoinCurrencies = (coinCurrencies: Array<CoinCurrency>) => ({
-  type: SET_COIN_CURRENCIES,
-  payload: coinCurrencies,
+const setCurrencies = (currencies: Array<CoinCurrency>) => ({
+  type: SET_CURRENCIES,
+  payload: currencies,
 });
 
-type GetCurrencies = () => (dispatch: DispatchType, getState?: GetState) => Promise<*>
-export const getCurrencies: GetCurrencies = () => dispatch =>
+type RequestCurrenciesAction = () => (dispatch: DispatchType, getState?: GetState) => Promise<*>
+export const requestCurrenciesAction: RequestCurrenciesAction = () => dispatch =>
   getRateApi()
     .then((res) => {
       const {
@@ -32,10 +32,10 @@ export const getCurrencies: GetCurrencies = () => dispatch =>
         },
       } = res;
 
-      const updatedCurrencies = COIN_CURRENCIES.map(coinCurrency => ({
-        ...coinCurrency,
-        rate: allRates[coinCurrency.abbName],
+      const updatedCurrencies = INIT_CURRENCIES.map(currency => ({
+        ...currency,
+        rate: allRates[currency.abbName],
       }));
 
-      dispatch(setCoinCurrencies(updatedCurrencies));
+      dispatch(setCurrencies(updatedCurrencies));
     });

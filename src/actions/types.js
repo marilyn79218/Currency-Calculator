@@ -7,4 +7,4 @@ export const LOG_OUT_CALLBACK: string = 'LOG_OUT_CALLBACK';
 export const LOG_IN_CALLBACK: string = 'LOG_IN_CALLBACK';
 
 export const SET_AMOUNT: string = 'SET_AMOUNT';
-export const SET_COIN_CURRENCIES: string = 'SET_COIN_CURRENCIES';
+export const SET_CURRENCIES: string = 'SET_CURRENCIES';

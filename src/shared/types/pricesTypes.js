@@ -1,5 +1,5 @@
 // @flow
-export type CoinCurrency = {
+export type Currency = {
   title: string,
   abbName: string,
   imgSrc: string,

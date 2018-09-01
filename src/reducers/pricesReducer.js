@@ -1,9 +1,9 @@
 // @flow
 import {
   SET_AMOUNT,
-  SET_COIN_CURRENCIES,
+  SET_CURRENCIES,
 } from '../actions/types';
-import { COIN_CURRENCIES } from '../shared/constants';
+import { INIT_CURRENCIES } from '../shared/constants';
 
 type State = {
   +amount: number,
@@ -15,7 +15,7 @@ type Action = {
 
 const initialState: State = {
   amount: -1,
-  coinCurrencies: COIN_CURRENCIES,
+  currencies: INIT_CURRENCIES,
 };
 
 type Prices = (State, Action) => State;
@@ -27,10 +27,10 @@ const prices: Prices = (state = initialState, action) => {
         ...state,
         amount: action.payload,
       };
-    case SET_COIN_CURRENCIES:
+    case SET_CURRENCIES:
       return {
         ...state,
-        coinCurrencies: action.payload,
+        currencies: action.payload,
       };
     default:
       return state;

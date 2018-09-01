@@ -3,14 +3,13 @@ import {
   compose,
   withProps,
 } from 'recompose';
-// import classnames from 'classnames';
 
 import styles from './CoinBlock.m.css';
 
 type Props = {
   isDesktop: boolean,
   inputAmount: number,
-  coinCurrency: {
+  currency: {
     title: string,
     abbName: string,
     imgSrc: string,
@@ -21,7 +20,7 @@ type Props = {
 const CoinBlock = ({
   isDesktop,
   inputAmount,
-  coinCurrency: {
+  currency: {
     title,
     abbName,
     imgSrc,

@@ -28,7 +28,7 @@ export const LOGIN_STATUS = {
 export const HOME_PAGE = 'prices';
 export const TAB_NAMES = ['prices', 'wallet', 'account'];
 
-export const COIN_CURRENCIES = [
+export const INIT_CURRENCIES = [
   {
     title: 'Bitcoin',
     abbName: 'bTC',

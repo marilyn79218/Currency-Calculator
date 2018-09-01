@@ -13,7 +13,7 @@ type Props = {
   children: React.Node,
 };
 
-/* eslint-disable */
+/* eslint-disable react/jsx-boolean-value */
 const App = ({ children }: Props) => (
   <Fragment>
     <MediaQuery minWidth={768}>

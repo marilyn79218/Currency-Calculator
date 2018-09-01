@@ -4,9 +4,9 @@ import {
   is,
 } from 'ramda';
 import humps from 'humps';
+import { MITHRIL_API_HOST } from '../constants';
 
-
-const API_HOST: string = process.env.VIS_API_HOST || '';
+const API_HOST: string = process.env.MITHRIL_API_HOST || MITHRIL_API_HOST || '';
 
 type GenTokenHeader = (token? : string) => {
   Authorization?: string,

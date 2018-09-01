@@ -25,6 +25,9 @@ export const LOGIN_STATUS = {
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAIL: 'LOGIN_FAIL',
 };
+
+export const MITHRIL_API_HOST = 'https://api.coinbase.com';
+export const APP_DOLLAR = 'USD';
 export const HOME_PAGE = 'prices';
 export const TAB_NAMES = ['prices', 'wallet', 'account'];
 

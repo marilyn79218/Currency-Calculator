@@ -1,40 +1,31 @@
-# Large App Starter Kit
+# Currency Calculator App
 
-## Develop
+### Description
+A React project which imeplements currency calculator for USD dollar.
+
+## User Features
+1.  Currency calculator.
+2.  Responsive web design for mobile devices.
+3.  Multiple breadcrumbs.
+
+## Developing Features
+1.  React.js & Redux
+2.  CSS module.
+3.  Lint checking before commits.
+4.  [Flow type][df1] checking.
+5.  Given any host with command:
+  4-1. ```$ MITHRIL_API_HOST="your.api.host" yarn start ```
+  4-2. So you can access the endpoint with environment variable `process.env.MITHRIL_API_HOST`
+
+## scripts
 ```sh
-VIS_API_HOST={} yarn start
+# start to develop
+yarn start
+or
+MITHRIL_API_HOST="https://api.coinbase.com" yarn start
+
+# lint
+yarn lint
 ```
 
-## commit checking
-* flowtype
-* eslint for staged files
-
-## build checking
-* flowtype
-* eslint
-
-## Fetch
-this project use `whatwg-fetch` as fetch polyfill
-
-### How
-```js
-import fetchUtil from 'shared/utils/fetchUtil';
-
-const endpoint = '/books';
-const fetchBooks = fetchUtil(endpoint);
-
-fetchBooks.get()
-  .then(console.log); // GET /books response
-
-fetchBooks.post({
-  body: {
-    ids: [1, 2, 3],
-  },
-  headers: {
-    user: 1,
-  },
-  token,
-})
-  .then(console.log);
-
-```
+[df1]: <https://flow.org/>

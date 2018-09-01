@@ -1,7 +1,11 @@
 // @flow
 import fetchUtil from '../shared/utils/fetchUtil';
+import { APP_DOLLAR } from '../shared/constants';
 
-const endpoint = 'https://api.coinbase.com/v2/exchange-rates?currency=USD';
+const endpoint = '/v2/exchange-rates';
 const fetchRate = fetchUtil(endpoint);
 
-export const getRate = () => fetchRate.get();
+const rateQuery = {
+  currency: APP_DOLLAR,
+};
+export const getRate = () => fetchRate.get({ query: rateQuery });

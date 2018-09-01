@@ -66,59 +66,55 @@ const Menu = ({
   LANG_OPTIONS,
   langValue,
   clickLangHandler,
-}: Props | PropsFromHOC) => {
-  console.log('Menu render', checkedValues);
-
-  return (
-    <IsDesktopContext.Consumer>
-      {
-        isDesktop => (
+}: Props | PropsFromHOC) => (
+  <IsDesktopContext.Consumer>
+    {
+      isDesktop => (
+        <div
+          className={
+            classnames({
+              [styles.container]: isDesktop,
+              [styles['mobile-container']]: !isDesktop,
+            })
+          }
+        >
           <div
             className={
               classnames({
-                [styles.container]: isDesktop,
-                [styles['mobile-container']]: !isDesktop,
+                [styles.menu]: isDesktop,
+                [styles['mobile-menu']]: !isDesktop,
               })
             }
           >
-            <div
-              className={
-                classnames({
-                  [styles.menu]: isDesktop,
-                  [styles['mobile-menu']]: !isDesktop,
-                })
-              }
-            >
-              {
-                TAB_NAMES.map(tabName => (
-                  <Tab
-                    key={tabName}
-                    isDesktop={isDesktop}
-                    tabName={tabName}
-                    checked={checkedValues[tabName]}
-                    onChange={clickTabHandler(tabName)}
-                    iconSrc={ICON_SRCES[tabName].iconSrc}
-                    checkedIconSrc={ICON_SRCES[tabName].checkedIconSrc}
-                  />
-                ))
-              }
-              {
-                isDesktop ? (
-                  <LangSwitcher
-                    isDesktop={isDesktop}
-                    value={langValue}
-                    options={LANG_OPTIONS}
-                    onChange={clickLangHandler}
-                  />
-                ) : null
-              }
-            </div>
+            {
+              TAB_NAMES.map(tabName => (
+                <Tab
+                  key={tabName}
+                  isDesktop={isDesktop}
+                  tabName={tabName}
+                  checked={checkedValues[tabName]}
+                  onChange={clickTabHandler(tabName)}
+                  iconSrc={ICON_SRCES[tabName].iconSrc}
+                  checkedIconSrc={ICON_SRCES[tabName].checkedIconSrc}
+                />
+              ))
+            }
+            {
+              isDesktop ? (
+                <LangSwitcher
+                  isDesktop={isDesktop}
+                  value={langValue}
+                  options={LANG_OPTIONS}
+                  onChange={clickLangHandler}
+                />
+              ) : null
+            }
           </div>
-        )
-      }
-    </IsDesktopContext.Consumer>
-  );
-};
+        </div>
+      )
+    }
+  </IsDesktopContext.Consumer>
+);
 
 const hoc = compose(
   withRouter,

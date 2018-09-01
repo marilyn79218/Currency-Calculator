@@ -7,7 +7,7 @@ import {
 import type {
   AllState,
 } from '../reducers';
-import { Currency } from '../shared/types/pricesTypes';
+import type { Currency } from '../shared/types/pricesTypes';
 
 const fromPrices: AllState => any = prop('prices');
 

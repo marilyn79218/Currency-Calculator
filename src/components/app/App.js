@@ -1,5 +1,5 @@
 // @flow
-import React, { Fragment } from 'react';
+import * as React from 'react';
 import MediaQuery from 'react-responsive';
 
 import { IsDesktopContext } from '../../shared/contexts';
@@ -15,7 +15,7 @@ type Props = {
 
 /* eslint-disable react/jsx-boolean-value */
 const App = ({ children }: Props) => (
-  <Fragment>
+  <React.Fragment>
     <MediaQuery minWidth={768}>
       <IsDesktopContext.Provider
         value={true}
@@ -70,7 +70,7 @@ const App = ({ children }: Props) => (
         />
       </IsDesktopContext.Provider>
     </MediaQuery>
-  </Fragment>
+  </React.Fragment>
 );
 
 export default App;

@@ -11,6 +11,7 @@ import pricesReducer from './pricesReducer';
 export type AllState = {
   auth: mixed,
   router: mixed,
+  prices: mixed,
 }
 
 type AppReducers = (allState?: AllState, action: { type: string }) => AllState;

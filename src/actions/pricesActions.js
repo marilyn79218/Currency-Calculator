@@ -7,7 +7,7 @@ import {
   SET_AMOUNT,
   SET_CURRENCIES,
 } from './types';
-import { CoinCurrency } from '../shared/types/pricesTypes';
+import type { Currency } from '../shared/types/pricesTypes';
 
 import { getRate as getRateApi } from '../apis/pricesApi';
 import { INIT_CURRENCIES } from '../shared/constants';
@@ -17,7 +17,7 @@ export const setAmount = (amount: number) => ({
   payload: amount,
 });
 
-const setCurrencies = (currencies: Array<CoinCurrency>) => ({
+const setCurrencies = (currencies: Array<Currency>) => ({
   type: SET_CURRENCIES,
   payload: currencies,
 });

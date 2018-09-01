@@ -119,40 +119,33 @@
   background: white;
 }
 
-.options{
+.options {
   overflow-y: scroll;
   min-width: 100%;
-  /*padding-top: 8px;
-  padding-bottom: 15px;*/
   max-height: 200px;
   box-sizing: border-box;
 }
 
-.gray-options{
+.gray-options {
   composes: options;
-  /*background: #362727;*/
-
   background: white;
   border: 1px solid #95B0F3;
   border-radius: 4px;
 }
 
-.option{
+.option {
   padding-left: 8px;
   cursor: pointer;
   height: 49px;
 
   &:hover{
-    background: #aeefdf;
-    /*color: white;*/
+    background: #e6ffff;
     color: black;
   }
 }
 
-.gray-option{
+.gray-option {
   composes: option;
-  /*color: white;*/
-
   color: #788c87;
 
   &:hover{
@@ -181,7 +174,6 @@
 
 .gray-selected{
   composes: selected;
-  /*color: white;*/
 
   > p {
     font-family: Roboto-Regular;
@@ -199,8 +191,7 @@
   color: #f4c441;
 }
 
-.gray-placeholder{
+.gray-placeholder {
   composes: placeholder;
-  /*color: rgba(#ffffff, 0.5);*/
-  color: red;
+  color: black;
 }

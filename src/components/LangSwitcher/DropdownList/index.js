@@ -126,12 +126,7 @@ class DropdownList extends React.PureComponent {
                   width: '100%',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
-                  cursor: 'default',
-                  fontFamily: 'Roboto-Regular',
-                  fontSize: '12px',
-                  color: '#3A4160',
-                  textAlign: 'center',
-                  lineHeight: '16px',
+                  cursor: 'pointer',
                 }}
               >
                 {option.label}

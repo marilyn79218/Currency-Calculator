@@ -1,4 +1,9 @@
 // @flow
+import BTCIconSVG from '../assets/crypto/btc/lightbg.svg';
+import ETHIconSVG from '../assets/crypto/eth/lightbg.svg';
+import ETCIconSVG from '../assets/crypto/etc.svg';
+import LTCIconSVG from '../assets/crypto/ltc.svg';
+
 export const BASENAME: string = process.env.PUBLIC_URL || '/';
 export const DEVELOPMENT: string = 'development';
 export const NODE_ENV: string = process.env.NODE_ENV || DEVELOPMENT;
@@ -22,3 +27,30 @@ export const LOGIN_STATUS = {
 };
 export const HOME_PAGE = 'prices';
 export const TAB_NAMES = ['prices', 'wallet', 'account'];
+
+export const COIN_CURRENCIES = [
+  {
+    title: 'Bitcoin',
+    abbName: 'bTC',
+    imgSrc: BTCIconSVG,
+    rate: 0,
+  },
+  {
+    title: 'Ethereum',
+    abbName: 'eTH',
+    imgSrc: ETHIconSVG,
+    rate: 0,
+  },
+  {
+    title: 'Litecoin',
+    abbName: 'lTC',
+    imgSrc: LTCIconSVG,
+    rate: 0,
+  },
+  {
+    title: 'Ethereum Classic',
+    abbName: 'eTC',
+    imgSrc: ETCIconSVG,
+    rate: 0,
+  },
+];

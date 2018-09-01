@@ -8,48 +8,14 @@ import classnames from 'classnames';
 
 import {
   compose,
-  withState,
   withHandlers,
   lifecycle,
 } from 'recompose';
 
 import { IsDesktopContext } from '../../shared/contexts';
-import BTCIconSVG from '../../shared/assets/crypto/btc/lightbg.svg';
-import ETHIconSVG from '../../shared/assets/crypto/eth/lightbg.svg';
-import ETCIconSVG from '../../shared/assets/crypto/etc.svg';
-import LTCIconSVG from '../../shared/assets/crypto/ltc.svg';
 import CoinBlock from './CoinBlock';
 
 import styles from './Prices.m.css';
-
-
-const ENDPOINT = 'https://api.coinbase.com/v2/exchange-rates?currency=USD';
-const COIN_CURRENCIES = [
-  {
-    title: 'Bitcoin',
-    abbName: 'BTC',
-    imgSrc: BTCIconSVG,
-    rate: 0,
-  },
-  {
-    title: 'Ethereum',
-    abbName: 'ETH',
-    imgSrc: ETHIconSVG,
-    rate: 0,
-  },
-  {
-    title: 'Litecoin',
-    abbName: 'LTC',
-    imgSrc: LTCIconSVG,
-    rate: 0,
-  },
-  {
-    title: 'Ethereum Classic',
-    abbName: 'ETC',
-    imgSrc: ETCIconSVG,
-    rate: 0,
-  },
-];
 
 type Props = {};
 type PropsFromHOC = {
@@ -112,7 +78,7 @@ const Prices = ({
 const hoc = compose(
   withRouter,
   translate('default'),
-  withState('coinCurrencies', 'setCoinCurrencies', COIN_CURRENCIES),
+  // withState('coinCurrencies', 'setCoinCurrencies', COIN_CURRENCIES),
   withHandlers({
     isValidFloat: () => (value) => {
       const floatDigits = value.split('.')[1];
@@ -144,29 +110,7 @@ const hoc = compose(
   }),
   lifecycle({
     componentDidMount() {
-      fetch(ENDPOINT, {
-        method: 'GET',
-      })
-        .then(res => res.json())
-        .then(resJson => Promise.resolve(resJson))
-        .then((res) => {
-          const {
-            data: {
-              rates: allRates,
-            },
-          } = res;
-
-          const {
-            coinCurrencies,
-            setCoinCurrencies,
-          } = this.props;
-
-          const updatedCurrencies = coinCurrencies.map(coinCurrency => ({
-            ...coinCurrency,
-            rate: allRates[coinCurrency.abbName],
-          }));
-          setCoinCurrencies(updatedCurrencies);
-        });
+      this.props.getCurrencies();
     },
   }),
 );

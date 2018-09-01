@@ -51,7 +51,7 @@ const CoinBlock = ({
           <div
             className={styles['coin-rate']}
           >
-            {rate * inputAmount}
+            {(rate * inputAmount).toFixed(8)}
           </div>
         </div>
       ) : (
@@ -76,7 +76,7 @@ const CoinBlock = ({
           <div
             className={styles['mobile-coin-rate']}
           >
-            <p>{rate * inputAmount}</p>
+            <p>{(rate * inputAmount).toFixed(8)}</p>
           </div>
         </div>
       )

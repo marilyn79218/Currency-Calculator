@@ -82,6 +82,11 @@
   font-size: 24px;
   color: #3A4160;
   line-height: 20px;
+
+  max-width: 280px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .mobile-coin-rate {
   position: relative;

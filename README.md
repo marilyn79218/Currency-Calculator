@@ -5,8 +5,10 @@ A React project which imeplements currency calculator for USD dollar.
 
 ## User Features
 1.  Currency calculator.
-2.  Responsive web design for mobile devices.
-3.  Multiple breadcrumbs.
+2.  Without leading zero dollar.
+3.  Responsive web design for mobile devices.
+4.  Implements breadcrumbs and switching langs in Navbar.
+5.  Redirect to prices page if URL invalid.
 
 ## Developing Features
 1.  React.js & Redux

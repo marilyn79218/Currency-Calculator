@@ -147,15 +147,15 @@ const hoc = compose(
     },
     isValidTabName: () => tabName => TAB_NAMES.includes(tabName),
   }),
-  lifecycle({
-    componentDidMount() {
+  withHandlers({
+    updateCheckedValues: props => () => {
       const {
         location: {
           pathname,
         },
         isValidTabName,
         setCheckedValues,
-      } = this.props;
+      } = props;
 
       const curTabName = pathname.split('/')[2];
       if (isValidTabName(curTabName)) {
@@ -171,6 +171,28 @@ const hoc = compose(
 
         setCheckedValues(updatedValues);
       }
+    },
+  }),
+  lifecycle({
+    componentWillReceiveProps(nextProps) {
+      const {
+        location: {
+          pathname: prevPathname,
+        },
+      } = this.props;
+      const {
+        location: {
+          pathname: nextPathname,
+        },
+        updateCheckedValues,
+      } = nextProps;
+
+      if (prevPathname !== nextPathname) {
+        updateCheckedValues();
+      }
+    },
+    componentDidMount() {
+      this.props.updateCheckedValues();
     },
   })
 );

@@ -30,7 +30,17 @@ export const MITHRIL_API_HOST = 'https://api.coinbase.com';
 export const APP_DOLLAR = 'USD';
 export const HOME_PAGE = 'prices';
 export const TAB_NAMES = ['prices', 'wallet', 'account'];
-export const VALID_LANGS = ['zh-TW', 'en-US'];
+export const DEFAULT_LANG = 'zh-TW';
+export const LANG_OPTIONS = [
+  {
+    label: '繁體中文',
+    value: 'zh-TW',
+  },
+  {
+    label: 'English',
+    value: 'en-US',
+  },
+];
 
 export const INIT_CURRENCIES = [
   {

@@ -9,7 +9,8 @@ import {
 
 import {
   TAB_NAMES,
-  VALID_LANGS,
+  DEFAULT_LANG,
+  LANG_OPTIONS,
 } from '../../shared/constants';
 import i18n from '../../Root/i18next';
 
@@ -29,17 +30,7 @@ type PropsFromHOC = {
   clickLangHandler: LangObj => any,
 };
 
-const LANG_OPTIONS = [
-  {
-    label: '繁體中文',
-    value: 'zh-TW',
-  },
-  {
-    label: 'English',
-    value: 'en-US',
-  },
-];
-
+const VALID_LANGS = LANG_OPTIONS.map(langObj => langObj.value);
 const LangWrapper = ({
   renderProps,
   langValue,
@@ -100,7 +91,7 @@ const hoc = compose(
 
       let curLangValue = i18n.language || window.navigator.language;
       if (isInvalidLang(curLangValue)) {
-        curLangValue = 'zh-TW';
+        curLangValue = DEFAULT_LANG;
       }
       i18n.changeLanguage(curLangValue);
 

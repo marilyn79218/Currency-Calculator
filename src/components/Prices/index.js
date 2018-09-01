@@ -88,18 +88,22 @@ const hoc = compose(
 
       return false;
     },
+    isLeadingZero: () => (value) => {
+      const allChars = value.split('');
+      return allChars[0] === '0' && allChars[1] !== '.';
+    },
   }),
   withHandlers({
     amountChange: props => (e) => {
       const {
         setAmount,
         isValidFloat,
+        isLeadingZero,
       } = props;
       const value = e.target.value;
 
       if (!isNaN(Number(value)) && isValidFloat(value)) {
-        const allChars = value.split('');
-        if (allChars[0] === '0' && allChars[1] === '0') {
+        if (isLeadingZero(value)) {
           setAmount(0);
         } else {
           setAmount(value);

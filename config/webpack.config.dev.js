@@ -12,6 +12,7 @@ const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.config.base');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -170,6 +171,43 @@ const config = {
                 },
               },
             ],
+            // Experiment for link css in dev mode
+            // loader: ExtractTextPlugin.extract({
+            //   // fallback: require.resolve('style-loader'),
+            //   use: [
+            //     {
+            //       loader: require.resolve('css-loader'),
+            //       options: {
+            //         modules: true,
+            //         importLoaders: 1,
+            //         localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+            //       },
+            //     },
+            //     {
+            //       loader: require.resolve('postcss-loader'),
+            //       options: {
+            //         // Necessary for external CSS imports to work
+            //         // https://github.com/facebookincubator/create-react-app/issues/2677
+            //         ident: 'postcss',
+            //         plugins: () => [
+            //           require('postcss-flexbugs-fixes'),
+            //           autoprefixer({
+            //             browsers: [
+            //               '>1%',
+            //               'last 4 versions',
+            //               'Firefox ESR',
+            //               'not ie < 9', // React doesn't support IE8 anyway
+            //             ],
+            //             flexbox: 'no-2009',
+            //           }),
+            //           require('postcss-extend'),
+            //           require('postcss-nested'),
+            //           require('postcss-color-function'),
+            //         ],
+            //       },
+            //     },
+            //   ],
+            // }),
           },
           {
             test: /\.css$/,
@@ -237,6 +275,10 @@ const config = {
     ],
   },
   plugins: [
+    // Experiment for link css in dev mode
+    // new ExtractTextPlugin({
+    //   filename: 'static/css/[name].bundle.css',
+    // }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
